@@ -1,5 +1,4 @@
 import "./buttonStyles.css";
-
 export default function Button({
   title,
   onClick,

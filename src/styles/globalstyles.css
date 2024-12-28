@@ -4,63 +4,105 @@
   box-sizing: border-box;
 }
 
-.todoplace
-{
-  width: 1100px;  
+.todoplace {
+  width: 1100px;
   height: 700px;
   background-color: #eef1f3;
-  
+
 }
-.maindiv
-{
+
+.maindiv {
   display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-    background-color: #ffffff;  
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff;
 }
-.titlefont
-{
-font-size: 25px;
-padding-top: 20px;
-padding-left: 30px;
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+.titlefont {
+  font-size: 25px;
+  padding-top: 20px;
+  padding-left: 30px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.descfont
-{
-padding-top: 20px;
-padding-left: 30px;
-font-family: 'Times New Roman', Times, serif;
-color: rgb(106, 112, 112);
-line-height: 0;
+
+.descfont {
+  padding-top: 20px;
+  padding-left: 30px;
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(106, 112, 112);
+  line-height: 0;
 }
-.checkboxstyle
-{
-  margin-top:10px;
+
+.checkboxstyle {
+  margin-top: 10px;
   margin-left: 40px;
   margin-right: 40px;
   padding-left: 30px;
   padding-top: 5px;
   background-color: #ffffff;
   border-radius: 7px;
-  height: 50px; 
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   transition: all 0.3s ease;
-  
-
 }
+
 .checkboxstyle:hover {
   background-color: #e0dedebe;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  cursor: pointer; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
-.checksection
-{
-  margin-top:50px;
-  
+
+.checksection {
+  margin-top: 35px;
 }
+
 .checkboxstyle .MuiFormControlLabel-label {
-  font-size: 17px;  
+  font-size: 17px;
   color: rgb(0, 0, 0);
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.addbuttom {
+  padding-left: 40px;
+  padding-top: 40px;
+}
+
+.addbuttom .MuiFab-root {
+  background-color: #ffffff;
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  color: rgb(0, 0, 0);
+}
+
+.addbuttom .MuiFab-root:hover {
+  background-color: #669cec;
+  transition: all 0.3s ease;
+}
+
+
+.editbuttom {
+  padding-right: 20px;
+}
+
+.editbuttom .MuiFab-root {
+  background-color: transparent; 
+  border: none; 
+  width: 32px;
+  height: 30px;
+  border-radius: 10px;
+  box-shadow: none; 
+  color: rgb(0, 0, 0); 
+}
+
+.editbuttom .MuiFab-root:hover {
+  background-color: transparent; 
+  box-shadow: none; 
+  transition: all 0.3s ease;
+}
+
