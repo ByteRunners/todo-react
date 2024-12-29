@@ -1,5 +1,5 @@
 //import Button from "./components/Button/button";
-import defualtvalues from './JSON/defualtvalues.json';
+import ListOfTodos from './JSON/defualtvalues.json';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Fab from '@mui/material/Fab';
@@ -15,7 +15,8 @@ export default function MainPage() {
   // const clickBtn2 = () => {
   //   console.log("clicked btn2");
   // };
-  const items = Array.from({ length: defualtvalues.num });
+  // const items = Array.from({ length: defualtvalues.num });
+  const items = ListOfTodos;
   return (
 
     <div className="maindiv">
@@ -41,11 +42,11 @@ export default function MainPage() {
 
         <section className='checksection'>
           <div>
-            {items.map((_, index) => (
+            {items.map((item, index) => (
               <div key={index} className="checkboxstyle">
                 <FormControlLabel
-                  control={<Checkbox defaultChecked = {defualtvalues.status} />}
-                  label={`${defualtvalues.dec}`}
+                  control={<Checkbox checked={item.status}/>}
+                  label={item.dec}
                 />
                 <div className="editbuttom">
                   <Fab aria-label="edit">
