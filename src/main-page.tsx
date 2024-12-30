@@ -17,6 +17,13 @@ export default function MainPage() {
   // };
   // const items = Array.from({ length: defualtvalues.num });
   const items = ListOfTodos;
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString('en-YE', {
+    weekday: 'short',
+    day: 'numeric',  
+    month: 'long',   
+    year: 'numeric', 
+  });
   return (
 
     <div className="maindiv">
@@ -29,8 +36,8 @@ export default function MainPage() {
       <section className='todoplace'>
         <div>
           <p className="titlefont">Good Morning, Mohammed! 🖐</p>
-          <h2 className="descfont">Today, Wed 6 july 2023</h2>
-        </div>
+          <h3 className="descfont">Today, {formattedDate}</h3>
+          </div>
 
         <section>
           <section className="addbuttom">
@@ -43,18 +50,19 @@ export default function MainPage() {
         <section className='checksection'>
           <div>
             {items.map((item, index) => (
-              <div key={index} className="checkboxstyle">
+              <div key={index} className="checkboxstyle">   
                 <FormControlLabel
-                  control={<Checkbox checked={item.status}/>}
+                  control={<Checkbox defaultChecked={item.status} />}
                   label={item.dec}
                 />
                 <div className="editbuttom">
-                  <Fab aria-label="edit">
-                    <EditIcon />
+                  <Fab aria-label="edit">                                                     
+                    <EditIcon style={{ color: 'rgb(56, 173, 228)' }} />
                   </Fab>
                   <Fab aria-label="delete">
-                    <DeleteIcon />
+                    <DeleteIcon style={{ color: 'rgb(224, 75, 75)' }} />
                   </Fab>
+
                 </div>
               </div>
             ))}
