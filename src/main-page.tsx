@@ -1,11 +1,14 @@
 //import Button from "./components/Button/button";
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { useEffect, useState } from 'react';
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useEffect, useState } from "react";
+
+const url = `http://localhost:3000/todos`;
+
 export default function MainPage() {
   // const clickBtn = () => {
   //   console.log("clicked");
@@ -22,54 +25,56 @@ export default function MainPage() {
     status: boolean;
   }
   const [items, setItems] = useState<ITodo[]>([]);
+  const [refresh, setRefresh] = useState(0);
+
+  async function fetchData() {
+    try {
+      const response = await fetch(url);
+      const result = await response.json();
+      setItems(result);
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  }
 
   useEffect(() => {
-    const url = `http://localhost:3000/todos`;
-    async function fetchData() {
-      try {
-        const response = await fetch(url);
-        const result = await response.json();
-        setItems(result);
-      } catch (e: any) {
-        console.log(e.message);
-      }
-    }
-
     fetchData();
-  }, []);
-
+    // task 1
+    // task 2
+  }, [refresh]);
 
   const createNewTodo = async () => {
     const url = `http://localhost:3000/todos`;
-    const response  = await fetch(url,{
-      method:"POST",
-      body:JSON.stringify({
-        "dec":"Killing Ahmed Alrai while he is walking",
-         "status": false
-      })
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        dec: "Killing Ahmed Alrai while he is walking",
+        status: false,
+      }),
     });
-     if(response.ok) console.log("success")
-      
-  }
 
-  
+    if (response.ok) console.log("success");
+    setRefresh((prev) => prev + 1);
+  };
+
   const deleteTodo = async (id: number) => {
     const url = `http://localhost:3000/todos/${id}`;
-    const response  = await fetch(url,{
-      method:"DELETE",
+    const response = await fetch(url, {
+      method: "DELETE",
     });
-    if(response.ok) console.log("success")
-  }
+    if (response.ok) console.log("success");
+    setRefresh((prev) => prev + 1);
+  };
 
   const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString('en-YE', {
-    weekday: 'short',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+  const formattedDate = currentDate.toLocaleDateString("en-YE", {
+    weekday: "short",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
   });
-  return (
 
+  return (
     <div className="maindiv">
       {/* <section>
       <div>Hello world</div>
@@ -77,7 +82,7 @@ export default function MainPage() {
       <Button title="Click Me 2" onClick={clickBtn2} />
     </section> */}
 
-      <section className='todoplace'>
+      <section className="todoplace">
         <div>
           <p className="titlefont">Good Morning, Mohammed! 🖐</p>
           <h3 className="descfont">Today, {formattedDate}</h3>
@@ -85,13 +90,13 @@ export default function MainPage() {
 
         <section>
           <section className="addbuttom">
-            <Fab aria-label="add" onClick={createNewTodo} > 
+            <Fab aria-label="add" onClick={createNewTodo}>
               <AddIcon />
             </Fab>
           </section>
         </section>
 
-        <section className='checksection'>
+        <section className="checksection">
           <div>
             {items.map((item, index) => (
               <div key={index} className="checkboxstyle">
@@ -101,26 +106,17 @@ export default function MainPage() {
                 />
                 <div className="editbuttom">
                   <Fab aria-label="edit">
-                    <EditIcon style={{ color: 'rgb(56, 173, 228)' }} />
+                    <EditIcon style={{ color: "rgb(56, 173, 228)" }} />
                   </Fab>
                   <Fab aria-label="delete" onClick={() => deleteTodo(item.id)}>
-                    <DeleteIcon style={{ color: 'rgb(224, 75, 75)' }} />
+                    <DeleteIcon style={{ color: "rgb(224, 75, 75)" }} />
                   </Fab>
-
                 </div>
               </div>
             ))}
           </div>
-
-
         </section>
-
-
-
-
       </section>
     </div>
-
   );
-
 }
